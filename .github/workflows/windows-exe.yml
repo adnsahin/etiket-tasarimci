@@ -1,0 +1,51 @@
+name: Windows EXE Oluştur
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main", "master"]
+    paths:
+      - "app/**"
+      - "main.js"
+      - "preload.js"
+      - "package.json"
+      - ".github/workflows/windows-exe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  windows-exe:
+    name: Taşınabilir ve Kurulum EXE
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Projeyi indir
+        uses: actions/checkout@v4
+
+      - name: Node.js ortamını hazırla
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Paketleri kur
+        run: npm install --no-audit --no-fund
+
+      - name: Windows EXE dosyalarını oluştur
+        run: npm run build:github
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Oluşan dosyaları göster
+        shell: pwsh
+        run: Get-ChildItem -Path dist -Recurse | Select-Object FullName, Length
+
+      - name: EXE dosyalarını indirmeye hazırla
+        uses: actions/upload-artifact@v4
+        with:
+          name: Etiket-Tasarimci-Windows-EXE
+          path: |
+            dist/*.exe
+          if-no-files-found: error
+          retention-days: 30
