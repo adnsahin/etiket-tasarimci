@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>120 × 80 Etiket Tasarımcı</title>
+<style>
+:root{
+  --bg:#dfe5ee;--surface:#f8fafc;--soft:#edf1f6;--text:#151d2e;--muted:#5f6b7d;
+  --line:#cfd7e3;--primary:#4d3edb;--primary-2:#6658f0;--primary-soft:#e7e4ff;
+  --success:#08785a;--danger:#d1284b;--shadow:0 16px 40px rgba(24,36,61,.13);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%}
+body{
+  font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--text);overflow:hidden;
+  background:radial-gradient(circle at 8% 0%,rgba(86,70,222,.16),transparent 30%),linear-gradient(180deg,#e9edf4,#dce3ec);
+  padding:10px;
+}
+button,input,select,textarea{font:inherit} button{cursor:pointer}
+.app{height:100%;max-width:1480px;margin:auto;display:grid;grid-template-rows:58px minmax(0,1fr);gap:10px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 14px;
+  background:rgba(248,250,252,.91);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.82);
+  border-radius:16px;box-shadow:0 9px 28px rgba(40,52,79,.07)
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,var(--primary-2),#3e33c8);color:#fff;font-size:20px;box-shadow:0 8px 19px rgba(79,70,229,.27)}
+.brand h1{font-size:19px;letter-spacing:-.35px;margin:0}.brand p{font-size:11px;color:var(--muted);margin:2px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.size-pill{padding:7px 11px;border-radius:999px;background:#111827;color:#fff;font-size:11px;font-weight:900;white-space:nowrap}
+.workspace{min-height:0;display:grid;grid-template-columns:430px minmax(500px,1fr);gap:10px}
+.panel,.preview-panel{min-height:0;background:var(--surface);border:1px solid rgba(47,61,89,.08);border-radius:16px;box-shadow:var(--shadow)}
+.panel{display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden}
+.panel-scroll{min-height:0;overflow:auto;padding:11px 11px 5px;scrollbar-width:thin;scrollbar-color:#cfd6e1 transparent}
+.card{background:var(--soft);border:1px solid #d9e0ea;border-radius:13px;padding:11px;margin-bottom:8px}.card:last-child{margin-bottom:0}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.card-title{font-size:11px;font-weight:950;letter-spacing:.48px;text-transform:uppercase;color:#4f5d70}.card-note{font-size:9.5px;color:var(--muted)}
+.input,select,textarea{width:100%;border:1.4px solid var(--line);border-radius:9px;background:#fff;color:var(--text);outline:none;padding:8px 9px;font-size:12px;transition:.14s}.input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.11)}
+textarea{min-height:60px;max-height:88px;resize:vertical}.template-row{display:grid;grid-template-columns:1fr auto;gap:6px}
+.template-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;min-height:34px;margin-top:7px}.template-empty{grid-column:1/-1;font-size:11px;color:#98a2b3;font-style:italic;padding:7px 0}
+.template-tile{height:39px;display:grid;grid-template-columns:minmax(0,1fr) 23px 23px;align-items:center;gap:2px;padding:3px 3px 3px 9px;border:1.4px solid var(--line);border-radius:10px;background:#fff;box-shadow:0 3px 8px rgba(27,39,62,.025);transition:.13s}.template-tile:hover{border-color:#aaa2ff;background:#fbfaff;box-shadow:0 7px 15px rgba(79,70,229,.07)}.template-tile.active{border-color:var(--primary);background:var(--primary-soft);box-shadow:0 0 0 2px rgba(85,72,231,.08)}
+.template-name-btn{min-width:0;height:29px;padding:0;border:0;background:transparent;text-align:left;color:#344054;font-size:10.5px;font-weight:950;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.template-tile.active .template-name-btn{color:#3730a3}.tile-btn{width:23px;height:23px;border:0;border-radius:7px;display:grid;place-items:center;background:transparent;color:#667085;padding:0;font-size:10px;transition:.12s}.tile-btn:hover{background:#ece9ff;color:var(--primary)}.tile-btn.delete:hover{background:#ffe7ed;color:var(--danger)}
+.template-pager{display:none;align-items:center;justify-content:flex-end;gap:5px;margin-top:6px}.template-pager.show{display:flex}.pager-info{min-width:38px;text-align:center;font-size:9px;font-weight:900;color:var(--muted)}.pager-btn{width:26px;height:24px;border:1px solid var(--line);border-radius:7px;background:#fff;color:#566274;font-size:11px;font-weight:950}.pager-btn:hover:not(:disabled){border-color:#aaa2ff;color:var(--primary);background:#faf9ff}.pager-btn:disabled{opacity:.35;cursor:default}
+@media(max-width:390px){.template-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.grid-3{display:grid;grid-template-columns:1.4fr .75fr .85fr;gap:8px}.field{margin-bottom:7px}.field:last-child{margin-bottom:0}.field>label,.mini-label{display:block;margin:0 0 4px;font-size:10px;font-weight:850;color:var(--muted)}
+.inline{display:flex;align-items:center;gap:6px}.check{display:inline-flex;align-items:center;gap:5px;color:#536072;font-size:10px;font-weight:850;white-space:nowrap;user-select:none}.check input{accent-color:var(--primary);width:14px;height:14px}
+.style-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}.tool-btn{height:32px;min-width:33px;padding:0 8px;border:1.4px solid var(--line);border-radius:8px;background:#fff;color:#394657;font-size:12px;font-weight:950;display:grid;place-items:center;transition:.13s}.tool-btn:hover{border-color:#a8a0ff}.tool-btn.on{background:var(--primary-soft);border-color:var(--primary);color:var(--primary)}.color-tool{width:33px;padding:3px}.color-tool input{width:100%;height:100%;padding:0;border:0;background:transparent;cursor:pointer}
+.pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.pos-btn{height:31px;border:1.4px solid var(--line);border-radius:8px;background:#fff;color:#6b7686;font-size:13px;font-weight:950;transition:.13s}.pos-btn:hover{border-color:#a8a0ff;color:var(--primary)}.pos-btn.active{background:var(--primary-soft);border-color:var(--primary);color:var(--primary);box-shadow:0 0 0 2px rgba(79,70,229,.07)}
+.position-layout{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-items:start}.quick-options{display:grid;gap:6px}.option-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}.option-box{background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px}.option-box label{font-size:9px;color:var(--muted);font-weight:850;display:block;margin-bottom:3px}.option-box input{width:100%;border:0;outline:0;background:transparent;font-size:12px;font-weight:850;color:var(--text)}
+details.cal{background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 8px}details.cal summary{cursor:pointer;font-size:10px;font-weight:900;color:#596579;list-style:none}details.cal summary::-webkit-details-marker{display:none}.cal-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:7px}.cal-note{font-size:8.8px;color:#7b8797;margin-top:5px;line-height:1.3}
+.actionbar{display:grid;grid-template-columns:74px 36px 1fr 1.15fr;gap:7px;padding:9px 11px;border-top:1px solid var(--line);background:rgba(255,255,255,.97)}.qty{height:38px;display:flex;align-items:center;gap:4px;border:1.4px solid var(--line);border-radius:10px;background:#fff;padding:3px 7px}.qty span{font-size:9px;font-weight:900;color:var(--muted)}.qty input{width:36px;border:0;outline:0;background:transparent;text-align:center;font-size:12px;font-weight:950}.btn{height:38px;border:0;border-radius:10px;padding:0 11px;font-size:11px;font-weight:950;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:.14s;white-space:nowrap}.btn-primary{background:linear-gradient(135deg,var(--primary-2),var(--primary));color:#fff;box-shadow:0 8px 18px rgba(79,70,229,.21)}.btn-primary:hover{transform:translateY(-1px)}.btn-dark{background:#111827;color:#fff}.btn-dark:hover{background:#202a3a}.btn-light{background:#fff;color:#374151;border:1.4px solid var(--line)}.btn-light:hover{background:#f7f8fb}.btn-icon{padding:0;font-size:15px}
+.preview-panel{display:flex;flex-direction:column;padding:12px;overflow:hidden}.preview-head{height:31px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 2px 8px}.preview-title{font-size:13px;font-weight:950}.preview-status{font-size:9.5px;font-weight:900;padding:5px 8px;border-radius:999px;background:#eef8f4;color:#087a57}
+.preview-stage{min-height:0;flex:1;display:grid;place-items:center;padding:12px;background:linear-gradient(145deg,#d6dde7,#cbd4e0);border-radius:13px;overflow:hidden}.label-frame{position:relative;width:min(100%,calc((100vh - 155px)*1.5));max-height:100%;aspect-ratio:3/2}.label-canvas{position:absolute;width:453.543px;height:302.362px;transform-origin:top left;background:#fff;overflow:hidden;box-shadow:0 12px 31px rgba(37,48,73,.19),0 0 0 1px rgba(30,41,59,.08)}
+.label-content{position:absolute;inset:18.142px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}.label-content.pos-tl{align-items:flex-start;justify-content:flex-start;text-align:left}.label-content.pos-tc{align-items:flex-start;justify-content:center}.label-content.pos-tr{align-items:flex-start;justify-content:flex-end;text-align:right}.label-content.pos-lc{align-items:center;justify-content:flex-start;text-align:left}.label-content.pos-center{align-items:center;justify-content:center}.label-content.pos-rc{align-items:center;justify-content:flex-end;text-align:right}.label-content.pos-bl{align-items:flex-end;justify-content:flex-start;text-align:left}.label-content.pos-bc{align-items:flex-end;justify-content:center}.label-content.pos-br{align-items:flex-end;justify-content:flex-end;text-align:right}.label-text{display:inline-block;max-width:100%;max-height:100%;line-height:1.12;text-align:inherit}.label-text.single{white-space:nowrap}.label-text.multi{white-space:pre-wrap;overflow-wrap:anywhere}
+.preview-foot{height:30px;display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:7px 2px 0;font-size:10px;color:var(--muted);font-weight:850}.fit-badge{color:var(--primary);background:var(--primary-soft);padding:4px 7px;border-radius:999px}
+.modal-backdrop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:15px;background:rgba(10,15,27,.76)}.modal-backdrop.open{display:flex}.modal{width:min(760px,96vw);max-height:96vh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--surface);border-radius:17px;overflow:hidden;box-shadow:0 30px 85px rgba(0,0,0,.40)}.modal-head,.modal-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line)}.modal-foot{border:0;border-top:1px solid var(--line)}.modal-title{font-size:14px;font-weight:950}.modal-subtitle{font-size:10px;color:var(--muted);margin-top:2px}.close-btn{width:32px;height:32px;border:0;border-radius:9px;background:#e5eaf1;color:#344054;font-size:18px}.modal-body{min-height:0;overflow:auto;padding:15px;background:#e2e8f0}.modal-stage{max-width:650px;margin:auto;padding:16px;border-radius:13px;background:#cbd5e1}.modal-frame{width:100%;aspect-ratio:3/2}.print-note{max-width:650px;margin:9px auto 0;padding:8px 10px;background:#f8fafc;border:1px solid var(--line);border-radius:9px;font-size:9.5px;line-height:1.4;color:#5f6b7d}.modal-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px}.modal-qty{display:flex;align-items:center;gap:7px;height:38px;padding:4px 7px;border:1.4px solid var(--line);border-radius:10px;background:#eef2f6}.modal-qty-label{font-size:10px;font-weight:950;color:#526071}.qty-step{width:28px;height:28px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#364152;font-size:16px;font-weight:900;line-height:1}.qty-step:hover{border-color:#9f96ff;color:var(--primary);background:#f7f5ff}.modal-qty input{width:52px;height:28px;border:0;border-radius:7px;background:#fff;outline:none;text-align:center;color:var(--text);font-size:12px;font-weight:950}.modal-qty input::-webkit-outer-spin-button,.modal-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.toast{position:fixed;left:50%;bottom:20px;z-index:2000;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:#111827;color:#fff;padding:9px 15px;border-radius:999px;font-size:11px;font-weight:850;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+#measureBox{position:fixed;left:-20000px;top:-20000px;width:453.543px;height:302.362px;visibility:hidden;overflow:hidden}#measureContent{position:absolute;inset:18.142px;display:flex;align-items:center;justify-content:center;overflow:hidden}#measureText{display:inline-block;max-width:100%;max-height:100%;line-height:1.12}#printRoot{display:none}
+@media(max-height:760px) and (min-width:901px){.app{grid-template-rows:50px minmax(0,1fr)}.topbar{padding:5px 12px}.brand-icon{width:36px;height:36px}.brand p{display:none}.card{padding:8px;margin-bottom:6px}.card-head{margin-bottom:6px}.input,select,textarea{padding:7px 8px}.pos-btn{height:27px}.tool-btn{height:29px}.actionbar{padding:7px 9px}.btn,.qty{height:35px}}
+@media(max-width:900px){body{overflow:auto;height:auto;min-height:100%;padding:8px}.app{height:auto;display:block}.topbar{margin-bottom:8px}.workspace{display:grid;grid-template-columns:1fr}.panel{min-height:690px;margin-bottom:8px}.preview-panel{min-height:520px}.label-frame{width:100%}}
+@media(max-width:520px){.brand p{display:none}.workspace{grid-template-columns:1fr}.panel{min-height:760px}.grid-3,.position-layout{grid-template-columns:1fr}.actionbar{grid-template-columns:65px 34px 1fr}.actionbar .save-preview{grid-column:1/-1}.preview-panel{min-height:430px}}
+@media print{
+  @page{size:120mm 80mm;margin:0}
+  html,body{margin:0!important;padding:0!important;background:#fff!important;width:120mm!important;overflow:visible!important}
+  body>*:not(#printRoot){display:none!important}
+  #printRoot{display:block!important;width:120mm!important;margin:0!important;padding:0!important}
+  .print-sheet{width:120mm!important;height:80mm!important;box-sizing:border-box!important;padding:4.8mm!important;margin:0!important;overflow:hidden!important;display:flex!important;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .print-sheet:last-child{break-after:auto;page-break-after:auto}.print-text{display:inline-block!important;max-width:100%!important;max-height:100%!important;line-height:1.12!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brand-icon">🏷</div><div><h1>Etiket Tasarımcı</h1><p>120 × 80 mm Argox etiketi · ekran ve baskıda aynı yerleşim</p></div></div>
+    <div class="size-pill">120 × 80 mm</div>
+  </header>
+
+  <main class="workspace">
+    <section class="panel">
+      <div class="panel-scroll">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Kayıtlı formatlar</div><div class="card-note">Seç, önizle veya sil</div></div>
+          <div class="template-row"><input class="input" id="templateName" maxlength="50" placeholder="Format adı"><button class="btn btn-light" id="saveOnlyBtn" type="button">Kaydet</button></div>
+          <div class="template-list" id="templateList"></div>
+          <div class="template-pager" id="templatePager"><button class="pager-btn" id="templatePrev" type="button" title="Önceki formatlar">‹</button><span class="pager-info" id="templatePageInfo">1 / 1</span><button class="pager-btn" id="templateNext" type="button" title="Sonraki formatlar">›</button></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-title">Etiket içeriği</div><label class="check"><input type="checkbox" id="multiline"> Çok satırlı</label></div>
+          <div class="field"><input class="input" id="text" value="ÜRÜN ADI" placeholder="Etiket yazısı"><textarea id="textMulti" style="display:none" placeholder="Etiket yazısını girin"></textarea></div>
+          <div class="grid-3">
+            <div class="field"><label>Yazı tipi</label><select id="fontfamily"><option value="Arial, sans-serif">Arial</option><option value="'Segoe UI', sans-serif">Segoe UI</option><option value="Verdana, sans-serif">Verdana</option><option value="Tahoma, sans-serif">Tahoma</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Georgia, serif">Georgia</option><option value="'Courier New', monospace">Courier New</option><option value="Impact, sans-serif">Impact</option></select></div>
+            <div class="field"><label>Boyut</label><input class="input" id="fontsize" type="number" value="48" min="6" max="200"></div>
+            <div class="field"><label>&nbsp;</label><label class="check" style="height:34px;padding:0 4px"><input type="checkbox" id="autofit"> Tam sığdır</label></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Stil</label><div class="style-row"><button class="tool-btn on" type="button" data-style="bold">B</button><button class="tool-btn" type="button" data-style="italic"><i>I</i></button><button class="tool-btn" type="button" data-style="underline"><u>U</u></button><button class="tool-btn" type="button" data-style="strike"><s>S</s></button></div></div>
+            <div class="field"><label>Renkler</label><div class="style-row"><button class="tool-btn color-tool" type="button" title="Yazı rengi"><input type="color" id="color" value="#172033"></button><button class="tool-btn color-tool" type="button" title="Zemin rengi"><input type="color" id="bgcolor" value="#ffffff"></button></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-title">Konum ve yazıcı</div><div class="card-note">Baskıyla aynı koordinat sistemi</div></div>
+          <div class="position-layout">
+            <div class="pos-grid">
+              <button class="pos-btn" type="button" data-pos="tl">↖</button><button class="pos-btn" type="button" data-pos="tc">↑</button><button class="pos-btn" type="button" data-pos="tr">↗</button>
+              <button class="pos-btn" type="button" data-pos="lc">←</button><button class="pos-btn active" type="button" data-pos="center">●</button><button class="pos-btn" type="button" data-pos="rc">→</button>
+              <button class="pos-btn" type="button" data-pos="bl">↙</button><button class="pos-btn" type="button" data-pos="bc">↓</button><button class="pos-btn" type="button" data-pos="br">↘</button>
+            </div>
+            <div class="quick-options">
+              <details class="cal"><summary>⚙ Argox kalibrasyonu</summary><div class="cal-grid"><div class="option-box"><label>Yatay (mm)</label><input id="offsetX" type="number" value="0" min="-20" max="20" step="0.5"></div><div class="option-box"><label>Dikey (mm)</label><input id="offsetY" type="number" value="0" min="-20" max="20" step="0.5"></div></div><div class="cal-note">Normalde iki değer de 0 olmalı. Yalnız fiziksel yazıcı kaymasında değiştirin.</div></details>
+              <div class="option-row"><div class="option-box"><label>Kağıt</label><input value="120 × 80 mm" readonly></div><div class="option-box"><label>Ölçek</label><input value="%100" readonly></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actionbar">
+        <div class="qty"><span>Adet</span><input id="printQty" type="number" value="1" min="1" max="999"></div>
+        <button class="btn btn-light btn-icon" id="saveDefaultBtn" type="button" title="Varsayılan olarak kaydet">★</button>
+        <button class="btn btn-dark" id="previewBtn" type="button">Önizle / Yazdır</button>
+        <button class="btn btn-primary save-preview" id="savePreviewBtn" type="button">Kaydet + Önizle</button>
+      </div>
+    </section>
+
+    <section class="preview-panel">
+      <div class="preview-head"><div class="preview-title">Canlı etiket önizlemesi</div><div class="preview-status">Baskıya hazır</div></div>
+      <div class="preview-stage">
+        <div class="label-frame" id="mainFrame"><div class="label-canvas" id="labelCanvas"><div class="label-content pos-center" id="labelContent"><div class="label-text single" id="labelText">ÜRÜN ADI</div></div></div></div>
+      </div>
+      <div class="preview-foot"><span>Gerçek ölçü oranı · 120 × 80 mm</span><span class="fit-badge" id="sizeDisplay">48 px</span></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="previewModal">
+  <div class="modal">
+    <div class="modal-head"><div><div class="modal-title">Baskı önizlemesi</div><div class="modal-subtitle" id="modalSubtitle">1 adet · 120 × 80 mm</div></div><button class="close-btn" id="closeModalBtn" type="button">×</button></div>
+    <div class="modal-body"><div class="modal-stage"><div class="label-frame modal-frame" id="modalFrame"><div class="label-canvas" id="modalCanvas"><div class="label-content pos-center" id="modalContent"><div class="label-text single" id="modalText">ÜRÜN ADI</div></div></div></div></div><div class="print-note"><strong>Argox ayarı:</strong> Kağıt 120 × 80 mm, yatay yön, kenar boşluğu yok, ölçek %100 ve “sayfaya sığdır” kapalı olmalı.</div></div>
+    <div class="modal-foot">
+      <div class="modal-qty" aria-label="Yazdırma adedi">
+        <span class="modal-qty-label">Yazdırma adedi</span>
+        <button class="qty-step" id="modalQtyMinus" type="button" aria-label="Adedi azalt">−</button>
+        <input id="modalPrintQty" type="number" value="1" min="1" max="999" inputmode="numeric">
+        <button class="qty-step" id="modalQtyPlus" type="button" aria-label="Adedi artır">+</button>
+      </div>
+      <div class="modal-actions"><button class="btn btn-light" id="backBtn" type="button">Düzenlemeye dön</button><button class="btn btn-primary" id="printBtn" type="button">Yazdır</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="measureBox"><div id="measureContent"><div id="measureText"></div></div></div>
+<div id="printRoot"></div><div class="toast" id="toast"></div>
+<script>
+'use strict';
+const BASE_W=453.543,BASE_H=302.362;
+const STORAGE_KEY='etiket_formatlar',DEFAULT_KEY='etiket_default_compact_v3',CAL_KEY='etiket_print_calibration_v3';
+let currentPos='center',activeTemplate='',toastTimer=null,templatePage=0;
+const TEMPLATE_PAGE_SIZE=6;
+const $=id=>document.getElementById(id);
+function clamp(v,min,max,fallback){const n=Number(v);return Number.isFinite(n)?Math.min(max,Math.max(min,n)):fallback}
+function getText(){return $('multiline').checked?$('textMulti').value:$('text').value}
+function isStyleOn(name){return document.querySelector(`[data-style="${name}"]`)?.classList.contains('on')||false}
+function getSettings(){return{text:getText(),size:clamp($('fontsize').value,6,200,48),color:$('color').value,bgcolor:$('bgcolor').value,font:$('fontfamily').value,pos:currentPos,autofit:$('autofit').checked,multiline:$('multiline').checked,bold:isStyleOn('bold'),italic:isStyleOn('italic'),underline:isStyleOn('underline'),strike:isStyleOn('strike')}}
+function getCalibration(){return{x:clamp($('offsetX').value,-20,20,0),y:clamp($('offsetY').value,-20,20,0)}}
+function weight(s){return s.bold?'900':'400'}
+function decoration(s){return s.underline&&s.strike?'underline line-through':s.underline?'underline':s.strike?'line-through':'none'}
+function alignItems(pos){return pos.startsWith('t')?'flex-start':pos.startsWith('b')?'flex-end':'center'}
+function justifyContent(pos){return ['tl','lc','bl'].includes(pos)?'flex-start':['tr','rc','br'].includes(pos)?'flex-end':'center'}
+function textAlign(pos){return ['tl','lc','bl'].includes(pos)?'left':['tr','rc','br'].includes(pos)?'right':'center'}
+function applyTextMode(copy=true){const multi=$('multiline').checked;if(copy){if(multi)$('textMulti').value=$('text').value;else $('text').value=$('textMulti').value}$('text').style.display=multi?'none':'block';$('textMulti').style.display=multi?'block':'none'}
+function setPos(pos,refresh=true){currentPos=pos||'center';document.querySelectorAll('[data-pos]').forEach(b=>b.classList.toggle('active',b.dataset.pos===currentPos));if(refresh)update()}
+function applySettings(s){if(!s)return;$('multiline').checked=!!s.multiline;applyTextMode(false);if(s.multiline)$('textMulti').value=s.text||'';else $('text').value=s.text||'';$('fontsize').value=s.size||48;$('color').value=s.color||'#172033';$('bgcolor').value=s.bgcolor||'#fff';$('fontfamily').value=s.font||'Arial, sans-serif';$('autofit').checked=!!s.autofit;['bold','italic','underline','strike'].forEach(n=>document.querySelector(`[data-style="${n}"]`)?.classList.toggle('on',!!s[n]));setPos(s.pos||'center',false);update()}
+function configureMeasure(s,size){const c=$('measureContent'),t=$('measureText');c.style.alignItems=alignItems(s.pos);c.style.justifyContent=justifyContent(s.pos);c.style.textAlign=textAlign(s.pos);t.textContent=s.text||'';t.style.fontFamily=s.font;t.style.fontSize=`${size}px`;t.style.fontWeight=weight(s);t.style.fontStyle=s.italic?'italic':'normal';t.style.textDecoration=decoration(s);t.style.whiteSpace=s.multiline?'pre-wrap':'nowrap';t.style.overflowWrap=s.multiline?'anywhere':'normal';t.style.textAlign='inherit'}
+function textFits(s,size){configureMeasure(s,size);const c=$('measureContent'),t=$('measureText');return t.scrollWidth<=c.clientWidth+.5&&t.scrollHeight<=c.clientHeight+.5}
+function fittedSize(s){if(!s.autofit||!String(s.text||'').trim())return clamp(s.size,6,200,48);let low=6,high=200,best=6;while(low<=high){const mid=Math.floor((low+high)/2);if(textFits(s,mid)){best=mid;low=mid+1}else high=mid-1}return best}
+function renderInto(canvas,content,text,s,size){canvas.style.backgroundColor=s.bgcolor;content.className=`label-content pos-${s.pos}`;text.textContent=s.text||'(boş)';text.className=`label-text ${s.multiline?'multi':'single'}`;text.style.color=s.color;text.style.fontFamily=s.font;text.style.fontSize=`${size}px`;text.style.fontWeight=weight(s);text.style.fontStyle=s.italic?'italic':'normal';text.style.textDecoration=decoration(s)}
+function scaleFrame(frame,canvas){if(!frame||!canvas)return;const scale=Math.min(frame.clientWidth/BASE_W,frame.clientHeight/BASE_H);const w=BASE_W*scale,h=BASE_H*scale;canvas.style.transform=`scale(${scale})`;canvas.style.left=`${(frame.clientWidth-w)/2}px`;canvas.style.top=`${(frame.clientHeight-h)/2}px`}
+function scaleAll(){scaleFrame($('mainFrame'),$('labelCanvas'));scaleFrame($('modalFrame'),$('modalCanvas'))}
+function update(){const s=getSettings(),size=fittedSize(s);if(s.autofit&&Number($('fontsize').value)!==size)$('fontsize').value=size;renderInto($('labelCanvas'),$('labelContent'),$('labelText'),s,size);$('sizeDisplay').textContent=s.autofit?`${size} px · tam sığdırıldı`:`${size} px`;requestAnimationFrame(scaleAll)}
+function setPrintQty(value,source='main'){const qty=clamp(value,1,999,1);$('printQty').value=qty;$('modalPrintQty').value=qty;$('modalSubtitle').textContent=`${qty} adet · 120 × 80 mm`;return qty}
+function changeModalQty(delta){setPrintQty(clamp($('modalPrintQty').value,1,999,1)+delta,'modal')}
+function openPreview(){update();const s=getSettings(),size=fittedSize(s),qty=setPrintQty($('printQty').value);renderInto($('modalCanvas'),$('modalContent'),$('modalText'),s,size);$('modalSubtitle').textContent=`${qty} adet · 120 × 80 mm`;$('previewModal').classList.add('open');requestAnimationFrame(scaleAll)}
+function closePreview(){$('previewModal').classList.remove('open')}
+function buildPrintSheets(){const s=getSettings(),size=fittedSize(s),qty=clamp($('printQty').value,1,999,1),cal=getCalibration(),root=$('printRoot');root.innerHTML='';for(let i=0;i<qty;i++){const sheet=document.createElement('section');sheet.className='print-sheet';sheet.style.backgroundColor=s.bgcolor;sheet.style.alignItems=alignItems(s.pos);sheet.style.justifyContent=justifyContent(s.pos);sheet.style.textAlign=textAlign(s.pos);const t=document.createElement('div');t.className='print-text';t.textContent=s.text||'';t.style.color=s.color;t.style.fontFamily=s.font;t.style.fontSize=`${size}px`;t.style.fontWeight=weight(s);t.style.fontStyle=s.italic?'italic':'normal';t.style.textDecoration=decoration(s);t.style.textAlign='inherit';t.style.whiteSpace=s.multiline?'pre-wrap':'nowrap';t.style.overflowWrap=s.multiline?'anywhere':'normal';t.style.transform=`translate(${cal.x}mm,${cal.y}mm)`;sheet.appendChild(t);root.appendChild(sheet)}localStorage.setItem(CAL_KEY,JSON.stringify(cal))}
+function printLabel(){setPrintQty($('modalPrintQty').value);buildPrintSheets();closePreview();requestAnimationFrame(()=>requestAnimationFrame(()=>window.print()))}
+function getTemplates(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch{return{}}}
+function saveTemplates(data){localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}
+function saveTemplate(openAfter=false){const name=$('templateName').value.trim();if(!name){showToast('Önce format adı girin');$('templateName').focus();return false}const data=getTemplates();data[name]=getSettings();saveTemplates(data);activeTemplate=name;templatePage=Math.floor(Object.keys(data).indexOf(name)/TEMPLATE_PAGE_SIZE);renderTemplates();showToast(`“${name}” kaydedildi`);if(openAfter)openPreview();return true}
+function loadTemplate(name){const data=getTemplates();if(!data[name])return;activeTemplate=name;$('templateName').value=name;applySettings(data[name]);renderTemplates()}
+function previewTemplate(name){loadTemplate(name);openPreview()}
+function deleteTemplate(name){if(!confirm(`“${name}” silinsin mi?`))return;const data=getTemplates();delete data[name];saveTemplates(data);if(activeTemplate===name){activeTemplate='';$('templateName').value=''}renderTemplates();showToast('Format silindi')}
+function renderTemplates(){const host=$('templateList'),pager=$('templatePager'),data=getTemplates(),names=Object.keys(data),pageCount=Math.max(1,Math.ceil(names.length/TEMPLATE_PAGE_SIZE));templatePage=Math.min(Math.max(0,templatePage),pageCount-1);host.innerHTML='';if(!names.length){host.innerHTML='<div class="template-empty">Henüz kayıtlı format yok</div>';pager.classList.remove('show');return}const start=templatePage*TEMPLATE_PAGE_SIZE;names.slice(start,start+TEMPLATE_PAGE_SIZE).forEach(name=>{const tile=document.createElement('div');tile.className='template-tile'+(name===activeTemplate?' active':'');const load=document.createElement('button');load.className='template-name-btn';load.type='button';load.textContent=name;load.title=name+' formatını yükle';load.onclick=()=>loadTemplate(name);const eye=document.createElement('button');eye.className='tile-btn';eye.type='button';eye.title='Yükle ve önizle';eye.textContent='◉';eye.onclick=()=>previewTemplate(name);const del=document.createElement('button');del.className='tile-btn delete';del.type='button';del.title='Sil';del.textContent='×';del.onclick=()=>deleteTemplate(name);tile.append(load,eye,del);host.appendChild(tile)});pager.classList.toggle('show',pageCount>1);$('templatePageInfo').textContent=`${templatePage+1} / ${pageCount}`;$('templatePrev').disabled=templatePage===0;$('templateNext').disabled=templatePage>=pageCount-1}
+function saveDefault(){localStorage.setItem(DEFAULT_KEY,JSON.stringify(getSettings()));showToast('Varsayılan etiket kaydedildi')}
+function loadDefault(){try{const raw=localStorage.getItem(DEFAULT_KEY)||localStorage.getItem('etiket_default_v3')||localStorage.getItem('etiket_default_v2')||localStorage.getItem('etiket_default');if(raw)applySettings(JSON.parse(raw))}catch{}}
+function loadCalibration(){try{const c=JSON.parse(localStorage.getItem(CAL_KEY)||'{}');$('offsetX').value=c.x??0;$('offsetY').value=c.y??0}catch{}}
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1900)}
+$('multiline').addEventListener('change',()=>{applyTextMode(true);update()});['text','textMulti','fontsize','fontfamily','color','bgcolor'].forEach(id=>$(id).addEventListener('input',update));$('autofit').addEventListener('change',update);document.querySelectorAll('[data-style]').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');update()}));document.querySelectorAll('[data-pos]').forEach(b=>b.addEventListener('click',()=>setPos(b.dataset.pos)));$('saveOnlyBtn').addEventListener('click',()=>saveTemplate(false));$('templatePrev').addEventListener('click',()=>{if(templatePage>0){templatePage--;renderTemplates()}});$('templateNext').addEventListener('click',()=>{templatePage++;renderTemplates()});$('saveDefaultBtn').addEventListener('click',saveDefault);$('printQty').addEventListener('input',()=>setPrintQty($('printQty').value));$('previewBtn').addEventListener('click',openPreview);$('savePreviewBtn').addEventListener('click',()=>saveTemplate(true));$('closeModalBtn').addEventListener('click',closePreview);$('backBtn').addEventListener('click',closePreview);$('modalPrintQty').addEventListener('input',()=>setPrintQty($('modalPrintQty').value));$('modalPrintQty').addEventListener('change',()=>setPrintQty($('modalPrintQty').value));$('modalQtyMinus').addEventListener('click',()=>changeModalQty(-1));$('modalQtyPlus').addEventListener('click',()=>changeModalQty(1));$('printBtn').addEventListener('click',printLabel);$('previewModal').addEventListener('click',e=>{if(e.target===$('previewModal'))closePreview()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closePreview()});window.addEventListener('afterprint',()=>{$('printRoot').innerHTML=''});window.addEventListener('resize',scaleAll);new ResizeObserver(scaleAll).observe($('mainFrame'));new ResizeObserver(scaleAll).observe($('modalFrame'));
+loadCalibration();loadDefault();renderTemplates();setPrintQty($('printQty').value);update();
+</script>
+</body>
+</html>
