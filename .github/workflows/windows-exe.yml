@@ -22,12 +22,22 @@ jobs:
 
     steps:
       - name: Projeyi indir
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Node.js ortamını hazırla
-        uses: actions/setup-node@v4
+      - name: Node.js 24 ortamını hazırla
+        uses: actions/setup-node@v5
         with:
-          node-version: "22"
+          node-version: "24"
+          package-manager-cache: false
+
+      - name: Ortam bilgilerini göster
+        shell: pwsh
+        run: |
+          node --version
+          npm --version
+          Get-ChildItem -Force
+          if (!(Test-Path "app/index.html")) { throw "app/index.html bulunamadı" }
+          if (!(Test-Path "package.json")) { throw "package.json bulunamadı" }
 
       - name: Paketleri kur
         run: npm install --no-audit --no-fund
@@ -36,16 +46,19 @@ jobs:
         run: npm run build:github
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
+          GH_TOKEN: ""
 
-      - name: Oluşan dosyaları göster
+      - name: Oluşan EXE dosyalarını kontrol et
         shell: pwsh
-        run: Get-ChildItem -Path dist -Recurse | Select-Object FullName, Length
+        run: |
+          if (!(Test-Path "dist")) { throw "dist klasörü oluşmadı" }
+          Get-ChildItem -Path dist -Recurse | Select-Object FullName, Length
+          if (!(Get-ChildItem -Path dist -Filter *.exe -File)) { throw "EXE dosyası oluşmadı" }
 
       - name: EXE dosyalarını indirmeye hazırla
         uses: actions/upload-artifact@v4
         with:
           name: Etiket-Tasarimci-Windows-EXE
-          path: |
-            dist/*.exe
+          path: dist/*.exe
           if-no-files-found: error
           retention-days: 30
