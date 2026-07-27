@@ -1,0 +1,61 @@
+{
+  "name": "etiket-tasarimci",
+  "version": "1.0.0",
+  "description": "120 x 80 mm Argox etiket tasarlama ve yazdırma uygulaması",
+  "main": "main.js",
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable nsis",
+    "build:portable": "electron-builder --win portable",
+    "build:setup": "electron-builder --win nsis",
+    "build:github": "electron-builder --win portable nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "tr.isletme.etikettasarimci",
+    "productName": "Etiket Tasarımcı",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName}-Taşınabilir-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Etiket Tasarımcı",
+      "artifactName": "${productName}-Kurulum-${version}-${arch}.${ext}"
+    }
+  }
+}

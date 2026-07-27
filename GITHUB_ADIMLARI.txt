@@ -1,0 +1,22 @@
+ETİKET TASARIMCIYI ONLİNE EXE'YE ÇEVİRME
+
+1) ZIP dosyasını klasöre çıkarın.
+2) github.com üzerinde oturum açın.
+3) Sağ üstteki + işaretinden New repository seçin.
+4) Depo adını örneğin etiket-tasarimci yazın.
+5) Public veya Private seçebilirsiniz. Create repository düğmesine basın.
+6) Açılan sayfada uploading an existing file bağlantısına basın.
+7) ZIP'in kendisini değil, ZIP'ten çıkan bütün dosyaları ve klasörleri yükleyin.
+   ÖNEMLİ: .github klasörü mutlaka yüklenmelidir.
+8) Commit changes düğmesine basın.
+9) Üst menüden Actions sekmesine geçin.
+10) Windows EXE Oluştur iş akışını açın.
+11) Run workflow > Run workflow düğmelerine basın.
+12) Yeşil tik oluşmasını bekleyin.
+13) Tamamlanan çalıştırmayı açın.
+14) En alttaki Artifacts bölümünde Etiket-Tasarimci-Windows-EXE dosyasını indirin.
+15) İndirilen ZIP'in içinde şunlar bulunur:
+    - Taşınabilir EXE
+    - Kurulum EXE
+
+Bilgisayarınıza Node.js kurulmaz. Derleme GitHub'ın Windows sunucusunda yapılır.
